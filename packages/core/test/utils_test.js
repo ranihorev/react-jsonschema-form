@@ -1093,6 +1093,31 @@ describe("utils", () => {
         });
       });
 
+      it("should not create empty objects as the default value", () => {
+        const schema = {
+          type: "object",
+          required: [],
+          properties: {
+            value: {
+              type: "object",
+              required: ["a"],
+              properties: {
+                a: {
+                  type: "string",
+                },
+                b: {
+                  type: "string",
+                },
+                c: {
+                  type: "string",
+                },
+              },
+            },
+          },
+        };
+        expect(getDefaultFormState(schema, {})).eql({});
+      });
+
       it("should not crash for defaults for nested dependencies when formData passed to computeDefaults is null", () => {
         const schema = {
           type: "object",

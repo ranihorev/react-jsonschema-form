@@ -3,6 +3,7 @@ import * as ReactIs from "react-is";
 import mergeAllOf from "json-schema-merge-allof";
 import fill from "core-js-pure/features/array/fill";
 import union from "lodash/union";
+import isEmpty from "lodash/isEmpty";
 import jsonpointer from "jsonpointer";
 import fields from "./components/fields";
 import widgets from "./components/widgets";
@@ -244,7 +245,12 @@ function computeDefaults(
           (formData || {})[key],
           includeUndefinedValues
         );
-        if (includeUndefinedValues || computedDefault !== undefined) {
+        if (
+          includeUndefinedValues ||
+          (typeof computedDefault === "object"
+            ? !isEmpty(computedDefault)
+            : computedDefault !== undefined)
+        ) {
           acc[key] = computedDefault;
         }
         return acc;
