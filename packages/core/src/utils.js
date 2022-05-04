@@ -245,13 +245,18 @@ function computeDefaults(
           (formData || {})[key],
           includeUndefinedValues
         );
-        if (
-          includeUndefinedValues ||
-          (typeof computedDefault === "object"
-            ? !isEmpty(computedDefault)
-            : computedDefault !== undefined)
-        ) {
+        if (includeUndefinedValues) {
           acc[key] = computedDefault;
+        } else {
+          if (typeof computedDefault === "object") {
+            // Store computedDefault if it's a non-empty object (e.g. not {})
+            if (!isEmpty(computedDefault)) {
+              acc[key] = computedDefault;
+            }
+          } else if (computedDefault !== undefined) {
+            // Store computedDefault if's a defined primitive (e.g. true)
+            acc[key] = computedDefault;
+          }
         }
         return acc;
       }, {});
