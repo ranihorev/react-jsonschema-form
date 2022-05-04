@@ -1043,7 +1043,7 @@ describe("ArrayField", () => {
       submitForm(form.node);
 
       sinon.assert.calledWithMatch(form.onSubmit.lastCall, {
-        formData: { multipleChoicesList: [] },
+        formData: {},
       });
 
       form = createFormComponent({
