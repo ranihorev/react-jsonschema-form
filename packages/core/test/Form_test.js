@@ -1796,6 +1796,40 @@ describeRepeated("Form common", createFormComponent => {
       });
     });
 
+    describe("nested required", () => {
+      const schema = {
+        type: "object",
+        properties: {
+          level1: {
+            type: "object",
+            required: ["level2"],
+            properties: {
+              level2: {
+                type: "string",
+              },
+            },
+          },
+        },
+      };
+
+      const onSubmit = sandbox.spy();
+      const onError = sandbox.spy();
+      const { node } = createFormComponent({
+        schema,
+        formData: {},
+        onSubmit,
+        onError,
+      });
+
+      Simulate.submit(node);
+
+      it("should not error on nested required fields", () => {
+        sinon.assert.called(onSubmit);
+        sinon.assert.notCalled(onError);
+        expect(node.querySelectorAll(".field-error")).to.not.exist;
+      });
+    });
+
     describe("array indices", () => {
       const schema = {
         type: "array",
