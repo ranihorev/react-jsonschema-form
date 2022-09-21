@@ -15,6 +15,28 @@ it according to semantic versioning. For example, if your PR adds a breaking cha
 should change the heading of the (upcoming) version to include a major version bump.
 
 -->
+# 5.0.0-beta.9
+
+## @rjsf/bootstrap
+- Updated the `FieldErrorTemplate` to remove the explicit typing of the `error` to string to support the two options
+
+## @rjsf/core
+- Updated the `FieldErrorTemplate` to remove the explicit typing of the `error` to string to support the two options 
+- Implemented programmatic validation via new `validateForm()` method on `Form`, fixing (https://github.com/rjsf-team/react-jsonschema-form/issues/2755, https://github.com/rjsf-team/react-jsonschema-form/issues/2552, https://github.com/rjsf-team/react-jsonschema-form/issues/2381, https://github.com/rjsf-team/react-jsonschema-form/issues/2343, https://github.com/rjsf-team/react-jsonschema-form/issues/1006, https://github.com/rjsf-team/react-jsonschema-form/issues/246)
+
+## @rjsf/semantic-ui
+- Updated the `FieldErrorTemplate` to use the `children` variation of the `List.Item` that supports ReactElement
+ 
+## @rjsf/utils
+- Updated the `FieldErrorProps` type to make it support an array of string and ReactElement
+
+## Dev / docs / playground
+- Updated the `custom-templates.md` file to add the missing asterisk to the new `FieldErrorTemplate` and `FieldHelpTemplate`
+- Updated the playground to add a new button for programmatically validating a form
+- Also updated the `validation.md` documentation to describe how to programmatically validate a form
+- Fixed the `chakra-ui` custom `uiSchema` documentation to make it clear they work on a per-field basis, fixing (https://github.com/rjsf-team/react-jsonschema-form/issues/2865)
+- Added `formElement` breaking-change documentation to the `5.x upgrade guide.md`
+- Replace Webpack with Vite
 
 # 5.0.0-beta.8
 
